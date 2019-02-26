@@ -18,8 +18,14 @@
 // Visa always has a prefix of 4 and a length of 13, 16, or 19.
 // MasterCard always has a prefix of 51, 52, 53, 54, or 55 and a length of 16.
 
+// STEP THREE
+// Discover always has a prefix of 6011, 644-649, or 65, and a length of 16 or 19.
+// Maestro always has a prefix of 5018, 5020, 5038, or 6304, and a length of 12-19.
+
 var detectNetwork = function (cardNumber) {
   var twoPrefix = Number(cardNumber.slice(0, 2));
+  var threePrefix = Number(cardNumber.slice(0, 3));
+  var fourPrefix = Number(cardNumber.slice(0, 4));
 
   // Diner's Club
   if (twoPrefix === 38 || twoPrefix === 39 && cardNumber.length === 14) {
@@ -35,6 +41,17 @@ var detectNetwork = function (cardNumber) {
   for (var i = 51; i <= 55; i++) {
     if (twoPrefix === i && cardNumber.length === 16) {
       return 'MasterCard';
+    }
+  }
+
+  // Discover
+  if ((fourPrefix === 6011 || twoPrefix === 65) && (cardNumber.length === 16 || cardNumber.length === 19)) {
+    return 'Discover';
+  }
+
+  for (var i = 644; i <= 649; i++) {
+    if (threePrefix === i && (cardNumber.length === 16 || cardNumber.length === 19)) {
+      return 'Discover';
     }
   }
 

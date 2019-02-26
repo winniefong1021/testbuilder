@@ -141,8 +141,34 @@ describe('MasterCard', function () {
 describe('Discover', function () {
   // Tests without a function will be marked as "pending" and not run
   // Implement these tests (and others) and make them pass!
-  it('has a prefix of 6011 and a length of 16');
-  it('has a prefix of 6011 and a length of 19');
+  var expect = chai.expect;
+  it('has a prefix of 6011 and a length of 16', function () {
+    expect(detectNetwork('6011123456789012')).to.equal('Discover');
+  });
+
+  it('has a prefix of 6011 and a length of 19', function () {
+    expect(detectNetwork('6011123456789012345')).to.equal('Discover');
+  });
+
+  it('has a prefix of 65 and a length of 16', function () {
+    expect(detectNetwork('6512345678901234')).to.equal('Discover');
+  });
+
+  it('has a prefix of 65 and a length of 19', function () {
+    expect(detectNetwork('6512345678901234567')).to.equal('Discover');
+  });
+
+  for (var i = 644; i <= 649; i++) {
+    (function (i) {
+      it('has a prefix of ' + i + ' and a length of 16', function () {
+        expect(detectNetwork(i + '1234567890123')).to.equal('Discover');
+      });
+
+      it('has a prefix of ' + i + ' and a length of 19', function () {
+        expect(detectNetwork(i + '1234567890123456')).to.equal('Discover');
+      });
+    })(i)
+  }
 });
 
 describe('Maestro', function () {
