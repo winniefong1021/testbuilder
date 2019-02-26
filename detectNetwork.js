@@ -14,6 +14,10 @@
 
 // Once you've read this, go ahead and try to implement this function, then return to the console.
 
+// STEP TWO
+// Visa always has a prefix of 4 and a length of 13, 16, or 19.
+// MasterCard always has a prefix of 51, 52, 53, 54, or 55 and a length of 16.
+
 var detectNetwork = function (cardNumber) {
   var twoPrefix = Number(cardNumber.slice(0, 2));
 
@@ -25,6 +29,18 @@ var detectNetwork = function (cardNumber) {
   // American Express
   if (twoPrefix === 34 || twoPrefix === 37 && cardNumber.length === 15) {
     return 'American Express';
+  }
+
+  // MasterCard
+  for (var i = 51; i <= 55; i++) {
+    if (twoPrefix === i && cardNumber.length === 16) {
+      return 'MasterCard';
+    }
+  }
+
+  // Visa
+  if (Number(cardNumber[0]) === 4 && cardNumber.length === 13 || cardNumber.length === 16 || cardNumber.length === 19) {
+    return 'Visa';
   }
 };
 
