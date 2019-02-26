@@ -55,6 +55,13 @@ var detectNetwork = function (cardNumber) {
     }
   }
 
+  // Maestro
+  for (var i = 12; i <= 19; i++) {
+    if ((fourPrefix === 5018 || fourPrefix === 5020 || fourPrefix === 5038 || fourPrefix === 6304) && cardNumber.length === i) {
+      return 'Maestro';
+    }
+  }
+
   // Visa
   if (Number(cardNumber[0]) === 4 && cardNumber.length === 13 || cardNumber.length === 16 || cardNumber.length === 19) {
     return 'Visa';
