@@ -236,3 +236,87 @@ describe('China UnionPay', function () {
     }
   }
 });
+
+describe('Switch', function () {
+  var expect = chai.expect;
+
+  var cardNum = '4903123456789012'
+  for (var cardLength = 16; cardLength <= 19; cardLength++) {
+    (function (cardNum, cardLength) {
+      it('has a prefix of 4903 and a length of ' + cardLength, function () {
+        expect(detectNetwork(cardNum)).to.equal('Switch');
+      });
+    })(cardNum, cardLength)
+    cardNum += '1';
+  }
+
+  var cardNum = '4905123456789012'
+  for (var cardLength = 16; cardLength <= 19; cardLength++) {
+    (function (cardNum, cardLength) {
+      it('has a prefix of 4905 and a length of ' + cardLength, function () {
+        expect(detectNetwork(cardNum)).to.equal('Switch');
+      });
+    })(cardNum, cardLength)
+    cardNum += '1';
+  }
+
+  var cardNum = '4911123456789012'
+  for (var cardLength = 16; cardLength <= 19; cardLength++) {
+    (function (cardNum, cardLength) {
+      it('has a prefix of 4911 and a length of ' + cardLength, function () {
+        expect(detectNetwork(cardNum)).to.equal('Switch');
+      });
+    })(cardNum, cardLength)
+    cardNum += '1';
+  }
+
+  var cardNum = '4936123456789012'
+  for (var cardLength = 16; cardLength <= 19; cardLength++) {
+    (function (cardNum, cardLength) {
+      it('has a prefix of 4936 and a length of ' + cardLength, function () {
+        expect(detectNetwork(cardNum)).to.equal('Switch');
+      });
+    })(cardNum, cardLength)
+    cardNum += '1';
+  }
+
+  var cardNum = '6333123456789012'
+  for (var cardLength = 16; cardLength <= 19; cardLength++) {
+    (function (cardNum, cardLength) {
+      it('has a prefix of 6333 and a length of ' + cardLength, function () {
+        expect(detectNetwork(cardNum)).to.equal('Switch');
+      });
+    })(cardNum, cardLength)
+    cardNum += '1';
+  }
+
+  var cardNum = '6759123456789012'
+  for (var cardLength = 16; cardLength <= 19; cardLength++) {
+    (function (cardNum, cardLength) {
+      it('has a prefix of 6759 and a length of ' + cardLength, function () {
+        expect(detectNetwork(cardNum)).to.equal('Switch');
+      });
+    })(cardNum, cardLength)
+    cardNum += '1';
+  }
+
+  var cardNum = '5641821234567890'
+  for (var cardLength = 16; cardLength <= 19; cardLength++) {
+    (function (cardNum, cardLength) {
+      it('has a prefix of 564182 and a length of ' + cardLength, function () {
+        expect(detectNetwork(cardNum)).to.equal('Switch');
+      });
+    })(cardNum, cardLength)
+    cardNum += '1';
+  }
+
+  var cardNum = '6331101234567890'
+  for (var cardLength = 16; cardLength <= 19; cardLength++) {
+    (function (cardNum, cardLength) {
+      it('has a prefix of 633110 and a length of ' + cardLength, function () {
+        expect(detectNetwork(cardNum)).to.equal('Switch');
+      });
+    })(cardNum, cardLength)
+    cardNum += '1';
+  }
+});

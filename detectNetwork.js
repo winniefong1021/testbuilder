@@ -93,6 +93,14 @@ var detectNetwork = function (cardNumber) {
     }
   }
 
+  // Switch
+  for (var i = 16; i <= 19; i++) {
+    var switchPrefix = (fourPrefix === 4903 || fourPrefix === 4905 || fourPrefix === 4911 || fourPrefix === 4936 || fourPrefix === 6333 || fourPrefix === 6759 || sixPrefix === 564182 || sixPrefix === 633110)
+    if (switchPrefix && cardNumber.length === i) {
+      return 'Switch';
+    }
+  }
+
   // Visa
   if (Number(cardNumber[0]) === 4 && cardNumber.length === 13 || cardNumber.length === 16 || cardNumber.length === 19) {
     return 'Visa';
