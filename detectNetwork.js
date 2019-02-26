@@ -22,10 +22,16 @@
 // Discover always has a prefix of 6011, 644-649, or 65, and a length of 16 or 19.
 // Maestro always has a prefix of 5018, 5020, 5038, or 6304, and a length of 12-19.
 
+// STEP FOUR
+// China UnionPay always has a prefix of 622126-622925, 624-626, or 6282-6288 and a length of 16-19.
+// Switch always has a prefix of 4903, 4905, 4911, 4936, 564182, 633110, 6333, or 6759 and a length of 16, 18, or 19.
+// Heads up! Switch and Visa seem to have some overlapping card numbers - in any apparent conflict, you should choose the network with the longer prefix.
+
 var detectNetwork = function (cardNumber) {
   var twoPrefix = Number(cardNumber.slice(0, 2));
   var threePrefix = Number(cardNumber.slice(0, 3));
   var fourPrefix = Number(cardNumber.slice(0, 4));
+  var sixPrefix = Number(cardNumber.slice(0, 6));
 
   // Diner's Club
   if (twoPrefix === 38 || twoPrefix === 39 && cardNumber.length === 14) {
@@ -59,6 +65,31 @@ var detectNetwork = function (cardNumber) {
   for (var i = 12; i <= 19; i++) {
     if ((fourPrefix === 5018 || fourPrefix === 5020 || fourPrefix === 5038 || fourPrefix === 6304) && cardNumber.length === i) {
       return 'Maestro';
+    }
+  }
+
+  // China UnionPay
+  for (var i = 622126; i <= 622925; i++) {
+    for (var j = 16; j <= 19; j++) {
+      if (sixPrefix === i && cardNumber.length === j) {
+        return 'China UnionPay';
+      }
+    }
+  }
+
+  for (var i = 624; i <= 626; i++) {
+    for (var j = 16; j <= 19; j++) {
+      if (threePrefix === i && cardNumber.length === j) {
+        return 'China UnionPay';
+      }
+    }
+  }
+
+  for (var i = 6282; i <= 6288; i++) {
+    for (var j = 16; j <= 19; j++) {
+      if (fourPrefix === i && cardNumber.length === j) {
+        return 'China UnionPay';
+      }
     }
   }
 

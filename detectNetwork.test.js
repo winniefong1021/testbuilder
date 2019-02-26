@@ -197,3 +197,42 @@ describe('Maestro', function () {
   }
 });
 
+describe('China UnionPay', function () {
+  var expect = chai.expect;
+
+  for (var prefix = 622126; prefix <= 622925; prefix++) {
+    var cardNum = prefix + '1234567890'
+    for (var cardLength = 16; cardLength <= 19; cardLength++) {
+      (function (prefix, cardNum, cardLength) {
+        it('has a prefix of ' + prefix + ' and a length of ' + cardLength, function () {
+          expect(detectNetwork(cardNum)).to.equal('China UnionPay');
+        });
+      })(prefix, cardNum, cardLength)
+      cardNum += '1';
+    }
+  }
+
+  for (var prefix = 624; prefix <= 626; prefix++) {
+    var cardNum = prefix + '1234567890123'
+    for (var cardLength = 16; cardLength <= 19; cardLength++) {
+      (function (prefix, cardNum, cardLength) {
+        it('has a prefix of ' + prefix + ' and a length of ' + cardLength, function () {
+          expect(detectNetwork(cardNum)).to.equal('China UnionPay');
+        });
+      })(prefix, cardNum, cardLength)
+      cardNum += '1';
+    }
+  }
+
+  for (var prefix = 6282; prefix <= 6288; prefix++) {
+    var cardNum = prefix + '123456789012'
+    for (var cardLength = 16; cardLength <= 19; cardLength++) {
+      (function (prefix, cardNum, cardLength) {
+        it('has a prefix of ' + prefix + ' and a length of ' + cardLength, function () {
+          expect(detectNetwork(cardNum)).to.equal('China UnionPay');
+        });
+      })(prefix, cardNum, cardLength)
+      cardNum += '1';
+    }
+  }
+});
